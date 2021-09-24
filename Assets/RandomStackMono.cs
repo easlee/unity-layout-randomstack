@@ -6,7 +6,6 @@ using System.IO;
 public class RandomStackMono : MonoBehaviour
 {
     public Text count;
-    public string path;
 
     public Slider sSpeed;
     public Slider sMinSpaceX;
@@ -31,12 +30,13 @@ public class RandomStackMono : MonoBehaviour
     {
         randomStack = new RandomStack();
         randomStack.sprites = new List<Sprite>();
-        foreach (string subdir in Directory.GetDirectories(path))
+        string dir = Path.Combine(Application.streamingAssetsPath, "images");
+        Debug.Log(dir);
+        foreach (string file in Directory.GetFiles(dir))
         {
-            string cover = Path.Combine(subdir, "cover.png");
-            if (!File.Exists(cover))
+            if (!file.ToLower().EndsWith(".jpg") && !file.ToLower().EndsWith(".png"))
                 continue;
-            byte[] bytes = File.ReadAllBytes(cover);
+            byte[] bytes = File.ReadAllBytes(file);
             Texture2D texture = new Texture2D(10, 10);
             texture.LoadImage(bytes);
             Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
