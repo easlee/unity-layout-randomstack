@@ -49,7 +49,7 @@ public class RandomStackMono : MonoBehaviour
 
 
 
-        sSpeed.value = randomStack.speed;
+        sSpeed.value = randomStack.speed - 5;
         sMinSpaceX.value = randomStack.minSpaceX;
         sMaxSpaceX.value = randomStack.maxSpaceX;
         sMinSpaceY.value = randomStack.minSpaceY;
